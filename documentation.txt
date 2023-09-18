@@ -1,0 +1,3 @@
+*/30 * * * * /var/www/etop-reporting-backend/venv/bin/python3 /var/www/etop-reporting-backend/manage.py populate_transaction_via_client
+
+

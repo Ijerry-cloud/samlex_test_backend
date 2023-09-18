@@ -1,0 +1,6 @@
+always remember
+apply appropriate permissions on each view
+
+
+///for suppliers app
+wether to apply unique to any of the supplier model field(for example, the company name)

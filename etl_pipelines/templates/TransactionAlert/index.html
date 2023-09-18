@@ -1,0 +1,203 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://use.typekit.net/gnc1lsn.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            height: 100vh;
+            /* background-color: #ffffff; */
+            font-family: hoss-round, sans-serif;
+        }
+
+        .header {
+            background-color: #060D27;
+            width: 100%;
+            height: 10%;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .header img {
+            display: inline-block;
+            vertical-align: middle;
+            margin: auto;
+        }
+
+        .main {
+            background-color: #ffffff;
+            background-image: url('{% static 'assets/images/bg-pattern.png' %}');
+            background-repeat: no-repeat;
+            background-position: center;
+            padding: 1.875rem;
+            width: 60%;
+            margin: auto;
+        }
+
+        .welcome-section .name {
+            font-weight: 600;
+            font-size: 2rem;
+        }
+
+        .welcome-section .text span {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .data-section {
+            margin: auto;
+            height: auto;
+        }
+
+        .id-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .id-container .id {
+            font-weight: 800;
+            font-size: 1rem;
+        }
+
+        .id-container .id span {
+            font-weight: normal;
+            font-size: 1rem;
+        }
+
+        .subscription {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .subscription span {
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .subscription a {
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .footer {
+            background-image: url('{% static 'assets/images/pattern.png' %}');
+            background-color: #060D27;
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding-bottom: 10%;
+            color: #ffffff;
+        }
+
+        .footer-container {
+            background-color: #060D27;
+            padding: 20px;
+            font-size: 0.8rem;
+            font-weight: 100;
+        }
+
+        .footer-container .address {
+            margin-top: 20px;
+            color: #B2B2B2;
+        }
+
+        .amount-list {
+            max-height: 300px;
+            overflow-y: auto;
+            list-style-type: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .amount-list li {
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .table-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="d-flex justify-content-center align-item-center">
+       <div>
+        <header class="header"><img src="{% static 'assets/images/spoutLogo.png' %}" alt="spoutpay"/></header>
+        <main class="main">
+            <section class="welcome-section">
+                <h1 class="name">Hi there</h1>
+                <p>There are some recent activities on the payment system that may require your attention. 
+                Our fraud detection system has flagged multiple transactions that have violated certain 
+                rules and have reached a threshold indicating potential fraudulent activities.</p>
+            </section>
+            <section class="data-section">
+                <div class="id-container">
+                    <p class="id">Rule Description:<span>{{ rule_description }}</span><br>
+                        Product:<span>{{ product|title }}</span><br>
+                        Total Flagged Today:<span>{{ total_flagged_today }}</span><br>
+                        Threshold Level:<span>{{ threshold_level|title }}</span><br>
+                        Total Transaction Today ({{ product }}):<span>{{ total_transaction_today }}</span><br>
+                        Percentage Flagged:<span>{{ percentage_flagged }}%</span><br>
+                        DateTime:<span>{{ datetime }}</span><br>
+                    </p>
+                </div>
+                <!-- New Table Section: Top Violators -->
+             <div class="id-container">
+                {% if top_merchant_offenders|length > 0 %}
+                    <h2>Top Violators</h2>
+                {% endif %}
+                {% if top_merchant_offenders|length > 0 %}
+                    <ul>
+                        {% for merchant in top_merchant_offenders %}
+                                <li style="max-width:200px;margin:auto;">{{ merchant.name }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+             
+            <div class="download-links">
+                <p>Download Our App</p>
+                <div>
+                    <a href="#"><img src="{% static 'assets/images/google-play.png' %}" alt="google-play"/></a>
+                    <a href="#"><img src="{% static 'assets/images/app-store.png' %}" alt="app-store"/></a>
+                </div>
+            </div>
+            </section>
+             
+            <div class="subscription">
+                <p>As a precautionary measure, we request you to review the transactions listed above</p>
+            </div>
+        </main>
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="row">
+                    <div class="col-7">
+                        <img src="{% static 'assets/images/spoutLogo.png' %}" alt="spoutpay"/>
+                        <p class="address">2, Ribabdu Street, Awalowo Road Ikoyi</p>
+                    </div>
+                    <div class="col">
+                        <p>Please reach each out to us on all our social platforms</p>
+                        <div>
+                            <a class="me-3" href="#"><img src="{% static 'assets/images/fb.png' %}" alt="facebook"/></a>
+                            <a class="me-3" href="#"><img src="{% static 'assets/images/ig.png' %}" alt="facebook"/></a>
+                            <a href="#"><img src="{% static 'assets/images/ln.png' %}" alt="facebook"/></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+       </div>
+    </div>
+</body>
+</html>

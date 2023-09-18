@@ -1,0 +1,6 @@
+EXCEEDED_DAILY_LIMIT = 'exceeded daily limit'
+FLAG_DUPLICATE_TRANSACTION = 'flag duplicate transaction'
+EXCEEDED_LIMIT = 'exceeded limit'
+EXCEEDED_BALANCE = 'exceeded balance'
+EXCEEDED_SINGLE_TRANSACTION_LIMIT = 'exceeded single transaction limit'
+EXCEEDED_NUMBER_OF_DAILY_TRANSACTION = 'exceeded number of daily transaction'
