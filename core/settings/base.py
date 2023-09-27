@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # custom apps
     "accounts.apps.AccountsConfig",
+    "people.apps.PeopleConfig",
+    "items.apps.ItemsConfig",
     "etl_pipelines.apps.ETLPipelinesConfig",
     # installed apps
     "rest_framework",
@@ -149,7 +151,7 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
     ),
     'DEFAULT_PAGINATION_CLASS': 'core.pagination.CustomPagination.CustomPagination',
-    'PAGE_SIZE': 20
+    'PAGE_SIZE': 10
 }
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
