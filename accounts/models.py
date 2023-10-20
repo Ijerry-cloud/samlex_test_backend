@@ -58,10 +58,10 @@ class User(AbstractUser):
         },
     )
     dept = models.CharField(
-        _("user dept"), max_length=50, choices=USER_DEPTS, default="tech", null=True
+        _("user dept"), max_length=50, choices=USER_DEPTS, default="tech", null=True, blank=True
     )
     gender = models.CharField(
-        max_length=50, choices=USER_GENDER, default="male", null=True
+        max_length=50, choices=USER_GENDER, default="male", null=True, blank=True
     )
 
     objects = UserManager()

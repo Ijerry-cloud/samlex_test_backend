@@ -22,3 +22,29 @@ class Supplier(models.Model):
 
     class Meta:
         ordering = ("company_name",)
+
+    def __str__(self):
+        return self.company_name
+
+class Customer(models.Model):
+    """
+        instance of a customer
+    """
+    uuid = models.UUIDField(default=uuid4, editable=False)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    phone_no = models.CharField(max_length=15, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+    address_1 = models.CharField(max_length=100, null=True, blank=True)
+    address_2 = models.CharField(max_length=100, null=True, blank=True)
+    city = models.CharField(max_length=50, null=True, blank=True)
+    state = models.CharField(max_length=20, null=True, blank=True)
+    zip = models.CharField(max_length=15, null=True, blank=True)
+    country = models.CharField(max_length=20, null=True, blank=True)
+    comments = models.TextField(max_length=20, null=True, blank=True)
+
+    class Meta:
+        ordering = ("first_name",)
+
+    def __str__(self):
+        return '%s %s' % (self.first_name, self.last_name)

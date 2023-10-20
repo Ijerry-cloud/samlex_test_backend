@@ -4,3 +4,17 @@ apply appropriate permissions on each view
 
 ///for suppliers app
 wether to apply unique to any of the supplier model field(for example, the company name)
+consider add an extra menu in menu bar where thay can filter and search suppliers and bulk delete and edit
+
+//for items
+add add an extra menu in menu bar where thay can filter and search items and bulk delete and edit
+
+
+//for customers
+consider add an extra menu in menu bar where thay can filter and search customers and bulk delete and edit
+
+//remove all print statements
+
+//remove everything concerning etop reporting
+
+//upload csv view, adjust listcreate view 

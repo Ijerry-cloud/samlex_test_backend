@@ -7,6 +7,7 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     
     department_name = serializers.SerializerMethodField()
+    sales = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = User

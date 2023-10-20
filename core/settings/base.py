@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "accounts.apps.AccountsConfig",
     "people.apps.PeopleConfig",
     "items.apps.ItemsConfig",
+    "sales.apps.SalesConfig",
     "etl_pipelines.apps.ETLPipelinesConfig",
     # installed apps
     "rest_framework",
@@ -151,7 +152,7 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
     ),
     'DEFAULT_PAGINATION_CLASS': 'core.pagination.CustomPagination.CustomPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 50
 }
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')

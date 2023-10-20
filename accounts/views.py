@@ -204,6 +204,7 @@ class UpdateUserView(generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
         print(request.user)
         user = get_object_or_404(User, username=request.data.get("user_data")['username'])
+        print(request.data.get("user_data")['username'])
         user_serializer = UserSerializer(user)
 
         serializer = UserSerializer(user, data=request.data.get("user_data"), partial=True)
@@ -219,6 +220,7 @@ class UpdateUserView(generics.CreateAPIView):
             return response.Response({
                 "detail": serializer.data
             }, status=status.HTTP_200_OK)
+        print(serializer.errors)
         return response.Response(
             {
                 "error": serializer.errors
