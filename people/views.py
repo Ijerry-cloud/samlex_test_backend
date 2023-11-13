@@ -103,7 +103,7 @@ class ListCreateCustomerView(generics.ListCreateAPIView):
 
         if not request.query_params.get(PARAM_QUERY_PAGE_NUMBER): #dont paginate if "page" is not in query parameter
             customers_serializer = CustomerSerializer(customers, many=True)
-            print(customers_serializer.data)
+            #print(customers_serializer.data)
             return response.Response(
                 customers_serializer.data,
                 status=status.HTTP_200_OK

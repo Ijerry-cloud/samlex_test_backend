@@ -10,7 +10,7 @@ class SupplierSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class CustomerSerializer(serializers.ModelSerializer):
-    sales = serializers.StringRelatedField(many=True)
+    #sales = serializers.StringRelatedField(many=True)
 
     class Meta: 
         model = Customer

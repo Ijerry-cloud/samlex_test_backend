@@ -58,7 +58,7 @@ class ItemSerializer(serializers.ModelSerializer):
         return None
     
     def get_label(self, obj):
-        return "%s  [%s in stock]" % (obj.name, obj.quantity)
+        return obj.name
 
     def get_number(self, obj):
         return 1

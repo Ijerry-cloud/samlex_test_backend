@@ -134,7 +134,6 @@ class UpdateItemView(generics.CreateAPIView):
             return response.Response({
                 "detail": serializer.data
             }, status=status.HTTP_200_OK)
-        print(serializer.errors)
         return response.Response(
             {
                 "error": serializer.errors

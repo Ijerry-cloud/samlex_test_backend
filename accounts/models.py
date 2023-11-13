@@ -76,3 +76,15 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.email
+    
+class StoreConfig(models.Model):
+    name = models.CharField(max_length=400, editable=False)
+    address = models.CharField(max_length=400)
+    phone1  = models.CharField(max_length=15)
+    phone2  = models.CharField(max_length=15, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+    website = models.CharField(max_length=100, null=True, blank=True)
+    sales_comments = models.TextField(blank=True, null=True)
+    tax1 = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True, default=0)
+    tax2 = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True, default=0)
+    print_receipt = models.BooleanField(null=True)

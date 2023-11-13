@@ -3,7 +3,8 @@ from rest_framework import generics, status, response
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import get_user_model
 from rest_framework.authtoken.models import Token
-from .serializers import UserSerializer, CreateUserSerializer
+from .models import StoreConfig
+from .serializers import UserSerializer, CreateUserSerializer, GetAllUsersSerializer, StoreConfigSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from accounts.authentication import BearerTokenAuthentication
@@ -11,6 +12,10 @@ from accounts.permissions import CustomerAccessPermission
 
 
 User = get_user_model()
+
+PARAM_QUERY_BY_EMPLOYEE_USERNAME = "username"
+PARAM_QUERY_PAGE_NUMBER = "page"
+COMPANY_NAME = "SAMLEX ELECTRONICS COMPANY LTD"
 
 # Create your views here.
 class LoginView(generics.CreateAPIView):
@@ -99,6 +104,17 @@ class ListCreateUserView(generics.ListCreateAPIView):
     
     def get(self, request, *args, **kwargs):
         users = User.objects.all()
+
+        if request.query_params.get(PARAM_QUERY_BY_EMPLOYEE_USERNAME):
+            users = users.filter(username__icontains = request.query_params.get(PARAM_QUERY_BY_EMPLOYEE_USERNAME))
+
+        if not request.query_params.get(PARAM_QUERY_PAGE_NUMBER):#dont paginate if "page" is not in query parameter
+            user_serializer = GetAllUsersSerializer(users, many=True)
+            return response.Response(
+                user_serializer.data,
+                status=status.HTTP_200_OK
+            )
+
         
         if request.query_params.get("first_name"):
             users = users.filter(first_name__icontains=request.query_params.get("first_name"))
@@ -220,7 +236,6 @@ class UpdateUserView(generics.CreateAPIView):
             return response.Response({
                 "detail": serializer.data
             }, status=status.HTTP_200_OK)
-        print(serializer.errors)
         return response.Response(
             {
                 "error": serializer.errors
@@ -292,5 +307,39 @@ class ProfileView(generics.ListCreateAPIView):
         same_dept_users = UserSerializer(same_dept, many=True).data    
         return response.Response({'detail': user, 'others': same_dept_users}, status=status.HTTP_200_OK)
     
+class GetSalesConfigView(generics.ListAPIView):
+    def get(self, request, *args, **kwargs):
+
+        config  = get_object_or_404(StoreConfig, name=COMPANY_NAME)
+        config_serializer = StoreConfigSerializer(config).data
+
+        data = dict()
+        data = config_serializer
+
+        return response.Response(data, status=status.HTTP_200_OK)
+    
+class UpdateSalesConfigView(generics.CreateAPIView):
+
+    def post(self, request, *args, **kwargs):
+        config = get_object_or_404(StoreConfig, name=COMPANY_NAME)
+
+        serializer = StoreConfigSerializer(config, data=request.data, partial=True)
+        if serializer.is_valid(raise_exception=False):
+            serializer.save()
+
+            return response.Response({
+                "detail": serializer.data
+            }, status=status.HTTP_200_OK)
+        return response.Response(
+            {
+                "error": serializer.errors
+            },
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
+
+
+
+
     
     
