@@ -321,6 +321,7 @@ class GetSalesConfigView(generics.ListAPIView):
 class UpdateSalesConfigView(generics.CreateAPIView):
 
     def post(self, request, *args, **kwargs):
+        print('changes')
         config = get_object_or_404(StoreConfig, name=COMPANY_NAME)
 
         serializer = StoreConfigSerializer(config, data=request.data, partial=True)
