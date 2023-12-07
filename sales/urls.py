@@ -10,5 +10,10 @@ urlpatterns = [
     path('daily-report/', DailyReportView.as_view(), name='daily_report'),
     path('customer-summary-report/', CustomerSummaryReportView.as_view(), name='customer-summary'),
     path('employee-summary-report/', EmployeeSummaryReportView.as_view(), name='employee-summary'),
-    path('item-inventory/', ItemInventoryView.as_view(), name='item-inventory')
+    path('item-inventory/', ItemInventoryView.as_view(), name='item-inventory'),
+
+    path('dashboard-counts/', DashboardGetCountView.as_view(), name='dashboard-counts'),
+    path('dashboard-category-charts/', DashboardCategoryChartView.as_view(), name='dashboard-category-charts'),
+
+
 ]

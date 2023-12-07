@@ -26,7 +26,7 @@ class Category(models.Model):
 
 class Item(models.Model):
     barcode = models.CharField(max_length=100, blank=True, null=True)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     category = models.ForeignKey(Category, related_name="items", blank=True, null=True, on_delete=models.SET_NULL)
     supplier = models.ForeignKey(Supplier, related_name="items", blank=True, null=True, on_delete=models.SET_NULL)
     cost_price = models.CharField(max_length=100, blank=True, null=True)

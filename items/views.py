@@ -5,6 +5,7 @@ from .models import File, Item, Category
 from .serializers import  FileUploadSerializer, SaveFileSerializer, ItemSerializer, CategorySerializer
 from rest_framework import generics, status, response
 from datetime import datetime
+from django.db import transaction
 
 PARAM_QUERY_BY_ITEM_NAME = "name"
 PARAM_QUERY_PAGE_NUMBER = "page"
@@ -55,6 +56,8 @@ class UploadItemCSVFileView(generics.CreateAPIView):
             item.reorder_level = row['Reorder Level']
             item.save()
 
+
+            """
             if not created:
                 data = dict()
                 data['employee'] = request.user.username
@@ -66,6 +69,9 @@ class UploadItemCSVFileView(generics.CreateAPIView):
                 truncated_history = current_history[-10:]   # Keep only the last ten appends
                 item.edit_history = truncated_history        # Update the 'json_field' with the truncated data
                 item.save()
+
+            """
+
 
         return response.Response({"status": "success"},
                         status=status.HTTP_201_CREATED)
@@ -113,27 +119,37 @@ class ListCreateItemView(generics.CreateAPIView):
     
 class UpdateItemView(generics.CreateAPIView):
     
+    #@transaction.atomic
     def post(self, request, *args, **kwargs):
         item = get_object_or_404(Item, id=request.data.get("id"))
+        #locked_instance = Item.objects.select_for_update().get(pk=item.pk) #lock that instance's rows as we are going to make multiple save and we wish to avoid race conditions
 
         serializer = ItemSerializer(item, data=request.data, partial=True)
         if serializer.is_valid(raise_exception=False):
-            serializer.save()
 
-            data = dict()
-            data['employee'] = request.user.username
-            data['date'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            data['quantity'] = request.data.get('quantity')
+            amount_to_add = int(request.data.get('amount_to_add', 0))
+            employee = request.user.username
+            print("amoun to add is", amount_to_add)
+            serializer.update(serializer.instance, serializer.validated_data, amount_to_add=amount_to_add, employee=employee)
+            print("this is the data", serializer.data)
 
-            current_history = item.edit_history         # Get the current JSON data list
-            current_history.append(data)                # Append the new JSON data
-            truncated_history = current_history[-10:]   # Keep only the last ten appends
-            item.edit_history = truncated_history        # Update the 'json_field' with the truncated data
-            item.save()
+            #locked_instance.quantity += int(request.data.get("quantity"))
+
+            #data = dict()
+            #data['employee'] = request.user.username
+            #data['date'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            #data['quantity'] = request.data.get('quantity')
+
+            #current_history = locked_instance.edit_history         # Get the current JSON data list
+            #current_history =  [data] + current_history              # prepend the new JSON data
+            #truncated_history = current_history[:10]   # Keep only the first ten
+            #locked_instance.edit_history = truncated_history        # Update the 'json_field' with the truncated data
+            #locked_instance.save()
 
             return response.Response({
                 "detail": serializer.data
             }, status=status.HTTP_200_OK)
+
         return response.Response(
             {
                 "error": serializer.errors
@@ -144,11 +160,12 @@ class UpdateItemView(generics.CreateAPIView):
 class DeleteItemView(generics.CreateAPIView):
 
     def post(self, request, *args, **kwargs):
+        item_id = request.data.get("id")
 
-        item = get_object_or_404(Item, id=request.data.get("id"))
+        item = get_object_or_404(Item, id=item_id)
         item.delete()
 
-        return response.Response({'detail': 'success'}, status=status.HTTP_200_OK)
+        return response.Response({'detail': 'success', 'id': item_id}, status=status.HTTP_200_OK)
 
 class ListCreateCategoryView(generics.CreateAPIView):
 

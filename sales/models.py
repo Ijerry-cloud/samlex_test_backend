@@ -48,6 +48,10 @@ class Sale(models.Model):
     employee_dept = models.CharField(max_length=20, blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True)
     comments = models.TextField(blank=True, null=True)
+    company_address = models.CharField(max_length=400)
+    company_phone1  = models.CharField(max_length=15)
+    company_phone2  = models.CharField(max_length=15, null=True, blank=True)
+    company_email = models.EmailField(null=True, blank=True)
 
     class Meta:
         ordering = ("-date",)
