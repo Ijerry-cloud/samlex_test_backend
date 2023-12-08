@@ -119,7 +119,6 @@ class ListCreateItemView(generics.CreateAPIView):
     
 class UpdateItemView(generics.CreateAPIView):
     
-    #@transaction.atomic
     def post(self, request, *args, **kwargs):
         item = get_object_or_404(Item, id=request.data.get("id"))
         #locked_instance = Item.objects.select_for_update().get(pk=item.pk) #lock that instance's rows as we are going to make multiple save and we wish to avoid race conditions
@@ -129,9 +128,7 @@ class UpdateItemView(generics.CreateAPIView):
 
             amount_to_add = int(request.data.get('amount_to_add', 0))
             employee = request.user.username
-            print("amoun to add is", amount_to_add)
             serializer.update(serializer.instance, serializer.validated_data, amount_to_add=amount_to_add, employee=employee)
-            print("this is the data", serializer.data)
 
             #locked_instance.quantity += int(request.data.get("quantity"))
 
@@ -156,7 +153,52 @@ class UpdateItemView(generics.CreateAPIView):
             },
             status=status.HTTP_400_BAD_REQUEST,
         )
-    
+
+class UpdateItemGroupView(generics.CreateAPIView):
+
+    def post(self, request, *args, **kwargs):
+
+        #check that items is passed the form
+        if not request.data.get("items"):
+            return response.Response(
+            {
+                "error": "missing parameter"
+            },
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
+        item_ids = request.data.get("items").split(",")
+        items = Item.objects.filter(id__in=item_ids)
+
+        amount_to_add = int(request.data.get('groupAdd', 0))
+        employee = request.user.username
+
+        for item in items:
+            with transaction.atomic():
+                if amount_to_add > 0:
+                    data = dict()
+                    item.quantity = item.quantity + amount_to_add
+                    data['employee'] = employee
+                    data['amount_added'] = amount_to_add
+                    data['date'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")                
+                    edit_history = [data] + item.edit_history
+                    item.edit_history = edit_history[:10]
+                    
+                if request.data.get("groupReorder"):
+                    item.reorder_level = int(request.data.get("groupReorder"))
+                
+                if request.data.get("groupTax1"):
+                    item.tax1_percent = int(request.data.get("groupTax1"))
+                
+                if request.data.get("groupTax2"):
+                    item.tax2_percent = int(request.data.get("groupTax2"))
+
+                item.save()
+        return response.Response({
+                "detail": "success"
+            }, status=status.HTTP_200_OK)
+
+
 class DeleteItemView(generics.CreateAPIView):
 
     def post(self, request, *args, **kwargs):
@@ -166,6 +208,30 @@ class DeleteItemView(generics.CreateAPIView):
         item.delete()
 
         return response.Response({'detail': 'success', 'id': item_id}, status=status.HTTP_200_OK)
+
+class DeleteItemGroupView(generics.CreateAPIView):
+
+    def post(self, request, *args, **kwargs):
+
+        #check that items is passed the form
+        if not request.data.get("items"):
+            return response.Response(
+            {
+                "error": "missing parameter"
+            },
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
+        item_ids = request.data.get("items").split(",")
+        items = Item.objects.filter(id__in=item_ids)
+
+        for item in items:
+            item.delete()
+
+        return response.Response({
+                "detail": "success"
+            }, status=status.HTTP_200_OK)
+
 
 class ListCreateCategoryView(generics.CreateAPIView):
 
