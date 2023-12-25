@@ -11,15 +11,15 @@ class SaleSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     def get_customer(self, obj):
-        customer = obj.customer.first_name
+        customer = obj.customer
         if customer:
-            return customer
+            return customer.first_name
         return None
     
     def get_employee(self, obj):
-        employee = obj.employee.username
+        employee = obj.employee
         if employee:
-            return employee
+            return employee.username
         return None
     
 

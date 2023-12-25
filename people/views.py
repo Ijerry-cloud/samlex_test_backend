@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from rest_framework import generics, status, response
 from django.contrib.auth import get_user_model
+from accounts.permissions import *
 from rest_framework.permissions import IsAuthenticated
 from accounts.authentication import BearerTokenAuthentication
-from accounts.permissions import CustomerAccessPermission
 from .models import Supplier, Customer
 from .serializers import SupplierSerializer, CustomerSerializer
 from django.db.models import Count, Q
@@ -16,6 +16,8 @@ PARAM_QUERY_BY_CUSTOMER_NAME = "name"
 
 
 class ListCreateSupplierView(generics.ListCreateAPIView):
+    authentication_classes = [BearerTokenAuthentication]
+    permission_classes = [IsAuthenticated, SuppliersAccessPermission]
 
     def get(self, request, *args, **kwargs):
         suppliers = Supplier.objects.all()
@@ -65,6 +67,8 @@ class ListCreateSupplierView(generics.ListCreateAPIView):
             )
 
 class UpdateSupplierView(generics.CreateAPIView):
+    authentication_classes = [BearerTokenAuthentication]
+    permission_classes = [IsAuthenticated, SuppliersAccessPermission]
 
     def post(self, request, *args, **kwargs):
         supplier = get_object_or_404(Supplier, uuid=request.data.get("uuid"))
@@ -84,17 +88,21 @@ class UpdateSupplierView(generics.CreateAPIView):
         )
     
 class DeleteSupplierView(generics.CreateAPIView):
-    authentication_classes= [BearerTokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    authentication_classes = [BearerTokenAuthentication]
+    permission_classes = [IsAuthenticated, SuppliersAccessPermission]
 
     def post(self, request, *args, **kwargs):
 
         supplier = get_object_or_404(Supplier, uuid=request.data.get("uuid"))
+        id = supplier.id
         supplier.delete()
 
-        return response.Response({'detail': 'success'}, status=status.HTTP_200_OK)
+        return response.Response({'detail': 'success', 'id': id}, status=status.HTTP_200_OK)
 
 class ListCreateCustomerView(generics.ListCreateAPIView):
+    authentication_classes = [BearerTokenAuthentication]
+    permission_classes = [IsAuthenticated, CustomerAccessPermission]
+
     def get(self, request, *args, **kwargs):
         customers = Customer.objects.all()
 
@@ -137,6 +145,8 @@ class ListCreateCustomerView(generics.ListCreateAPIView):
             )
 
 class UpdateCustomerView(generics.CreateAPIView):
+    authentication_classes = [BearerTokenAuthentication]
+    permission_classes = [IsAuthenticated, CustomerAccessPermission]
 
     def post(self, request, *args, **kwargs):
         customer = get_object_or_404(Customer, uuid=request.data.get("uuid"))
@@ -150,9 +160,6 @@ class UpdateCustomerView(generics.CreateAPIView):
             return response.Response({
                 "detail": serializer.data
             }, status=status.HTTP_200_OK)
-        print(request.data)
-        print(serializer.data)
-        print(serializer.errors)
         return response.Response(
             {
                 "error": serializer.errors
@@ -162,11 +169,14 @@ class UpdateCustomerView(generics.CreateAPIView):
     
 
 class DeleteCustomerView(generics.CreateAPIView):
+    authentication_classes = [BearerTokenAuthentication]
+    permission_classes = [IsAuthenticated, CustomerAccessPermission]
 
     def post(self, request, *args, **kwargs):
         customer = get_object_or_404(Customer, uuid=request.data.get("uuid"))
+        id = customer.id
         customer.delete()
 
-        return response.Response({'detail': 'success'}, status=status.HTTP_200_OK)
+        return response.Response({'detail': 'success', 'id': id}, status=status.HTTP_200_OK)
 
 

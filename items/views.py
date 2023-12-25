@@ -6,12 +6,17 @@ from .serializers import  FileUploadSerializer, SaveFileSerializer, ItemSerializ
 from rest_framework import generics, status, response
 from datetime import datetime
 from django.db import transaction
+from accounts.permissions import *
+from rest_framework.permissions import IsAuthenticated
+from accounts.authentication import BearerTokenAuthentication
 
 PARAM_QUERY_BY_ITEM_NAME = "name"
 PARAM_QUERY_PAGE_NUMBER = "page"
 PARAM_QUERY_BY_CATEGORY_NAME = "name"
 
 class UploadFileView(generics.CreateAPIView):
+    authentication_classes = [BearerTokenAuthentication]
+    permission_classes = [IsAuthenticated, ItemsAccessPermission]
     serializer_class = FileUploadSerializer
     
     def post(self, request, *args, **kwargs):
@@ -32,6 +37,8 @@ class UploadFileView(generics.CreateAPIView):
                         status=status.HTTP_201_CREATED)
     
 class UploadItemCSVFileView(generics.CreateAPIView):
+    authentication_classes = [BearerTokenAuthentication]
+    permission_classes = [IsAuthenticated, ItemsAccessPermission]
     serializer_class = FileUploadSerializer
 
     def post(self, request, *args, **kwargs):
@@ -47,7 +54,7 @@ class UploadItemCSVFileView(generics.CreateAPIView):
 
             category, category_created = Category.objects.get_or_create(name=row_category)
 
-            item, created = Item.objects.get_or_create(name=row['Item Name'])
+            item, created = Item.objects.get_or_create(name=str(row['Item Name']).strip())
 
             item.category = category
             item.cost_price = row['Cost Price']
@@ -77,6 +84,8 @@ class UploadItemCSVFileView(generics.CreateAPIView):
                         status=status.HTTP_201_CREATED)
 
 class ListCreateItemView(generics.CreateAPIView):
+    authentication_classes = [BearerTokenAuthentication]
+    permission_classes = [IsAuthenticated, ItemsAccessPermission]
 
     def get(self, request, *args, **kwargs):
         items = Item.objects.all()
@@ -102,10 +111,14 @@ class ListCreateItemView(generics.CreateAPIView):
                 return response.Response({
                     "detail": "This Item already exists",
                 }, status=status.HTTP_400_BAD_REQUEST)
+
         
         serializer = ItemSerializer(data=request.data, partial=True)
+        
         if serializer.is_valid(raise_exception=False):
+            
             serializer.save()
+            print(serializer.data)
             return response.Response({
                 "detail": serializer.data
             }, status=status.HTTP_200_OK)
@@ -118,6 +131,8 @@ class ListCreateItemView(generics.CreateAPIView):
         )
     
 class UpdateItemView(generics.CreateAPIView):
+    authentication_classes = [BearerTokenAuthentication]
+    permission_classes = [IsAuthenticated, ItemsAccessPermission]
     
     def post(self, request, *args, **kwargs):
         item = get_object_or_404(Item, id=request.data.get("id"))
@@ -146,7 +161,7 @@ class UpdateItemView(generics.CreateAPIView):
             return response.Response({
                 "detail": serializer.data
             }, status=status.HTTP_200_OK)
-
+        print(serializer.errors)
         return response.Response(
             {
                 "error": serializer.errors
@@ -155,6 +170,8 @@ class UpdateItemView(generics.CreateAPIView):
         )
 
 class UpdateItemGroupView(generics.CreateAPIView):
+    authentication_classes = [BearerTokenAuthentication]
+    permission_classes = [IsAuthenticated, ItemsAccessPermission]
 
     def post(self, request, *args, **kwargs):
 
@@ -200,6 +217,8 @@ class UpdateItemGroupView(generics.CreateAPIView):
 
 
 class DeleteItemView(generics.CreateAPIView):
+    authentication_classes = [BearerTokenAuthentication]
+    permission_classes = [IsAuthenticated, ItemsAccessPermission]
 
     def post(self, request, *args, **kwargs):
         item_id = request.data.get("id")
@@ -210,6 +229,8 @@ class DeleteItemView(generics.CreateAPIView):
         return response.Response({'detail': 'success', 'id': item_id}, status=status.HTTP_200_OK)
 
 class DeleteItemGroupView(generics.CreateAPIView):
+    authentication_classes = [BearerTokenAuthentication]
+    permission_classes = [IsAuthenticated, ItemsAccessPermission]
 
     def post(self, request, *args, **kwargs):
 

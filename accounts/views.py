@@ -8,7 +8,7 @@ from .serializers import UserSerializer, CreateUserSerializer, GetAllUsersSerial
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from accounts.authentication import BearerTokenAuthentication
-from accounts.permissions import CustomerAccessPermission
+from accounts.permissions import *
 
 
 User = get_user_model()
@@ -100,7 +100,7 @@ class ResetPasswordView(generics.CreateAPIView):
 class ListCreateUserView(generics.ListCreateAPIView):
     
     authentication_classes = [BearerTokenAuthentication]
-    permission_classes = [IsAuthenticated, CustomerAccessPermission]
+    permission_classes = [IsAuthenticated, EmployeesAccessPermission]
     
     def get(self, request, *args, **kwargs):
         users = User.objects.all()
@@ -215,7 +215,7 @@ class ActivateUserView(generics.CreateAPIView):
 class UpdateUserView(generics.CreateAPIView):
     
     authentication_classes = [BearerTokenAuthentication]
-    permission_classes = [IsAuthenticated, CustomerAccessPermission]
+    permission_classes = [IsAuthenticated, EmployeesAccessPermission]
     
     def post(self, request, *args, **kwargs):
         print(request.user)
@@ -266,7 +266,7 @@ class DeactivateUserView(generics.CreateAPIView):
 class DeleteUserView(generics.CreateAPIView):
     
     authentication_classes = [BearerTokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, EmployeesAccessPermission]
     
     def post(self, request, *args, **kwargs):
         
@@ -281,7 +281,7 @@ class DeleteUserView(generics.CreateAPIView):
 class DeleteOneUserView(generics.CreateAPIView):
     
     authentication_classes = [BearerTokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, EmployeesAccessPermission]
     
     def post(self, request, *args, **kwargs):
         print(request.data.get("username"))
@@ -308,6 +308,10 @@ class ProfileView(generics.ListCreateAPIView):
         return response.Response({'detail': user, 'others': same_dept_users}, status=status.HTTP_200_OK)
     
 class GetSalesConfigView(generics.ListAPIView):
+
+    authentication_classes = [BearerTokenAuthentication]
+    permission_classes = [IsAuthenticated, IsSamlexAdmin]
+
     def get(self, request, *args, **kwargs):
 
         config  = get_object_or_404(StoreConfig, name=COMPANY_NAME)
@@ -319,6 +323,9 @@ class GetSalesConfigView(generics.ListAPIView):
         return response.Response(data, status=status.HTTP_200_OK)
     
 class UpdateSalesConfigView(generics.CreateAPIView):
+
+    authentication_classes = [BearerTokenAuthentication]
+    permission_classes = [IsAuthenticated, IsSamlexAdmin]
 
     def post(self, request, *args, **kwargs):
         config = get_object_or_404(StoreConfig, name=COMPANY_NAME)
