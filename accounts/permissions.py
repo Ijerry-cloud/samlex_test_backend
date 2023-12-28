@@ -35,7 +35,11 @@ class SuppliersAccessPermission(permissions.BasePermission):
 
     def has_permission(self, request, view):
         #print(request.user.username)
-        return bool(request.user.suppliers_perm)
+
+        if request.user.suppliers_perm:
+            return True
+        else:
+            return request.method in permissions.SAFE_METHODS
     
 class ReportsAccessPermission(permissions.BasePermission):
     message = 'You dont have access to this operation'

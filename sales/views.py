@@ -8,7 +8,7 @@ from items.models import Item, Category
 from items.serializers import ItemSerializer, CategoryChartSerializer
 from .serializers import SaleSerializer, DailyReportSerializer, CustomerReportSerializer, EmployeeReportSerializer
 from datetime import datetime, time
-from django.db.models import Q, Count, Sum, F, Value, CharField
+from django.db.models import Q, Count, Sum, F, Value, CharField, Case, When, IntegerField
 from django.db.models.functions import Concat
 import json
 from django.db.models.functions import TruncDate
@@ -17,6 +17,8 @@ from accounts.permissions import *
 from rest_framework.permissions import IsAuthenticated
 from accounts.authentication import BearerTokenAuthentication
 from django.db import transaction
+import csv
+from django.http import HttpResponse
 
 COMPANY_NAME = "SAMLEX ELECTRONICS COMPANY LTD"
 
@@ -52,14 +54,14 @@ class ListCreateSalesView(generics.ListCreateAPIView):
                 for item_to_sell in items_to_sell:
                     # print(2222222)
                     item = get_object_or_404(Item, id=item_to_sell['id'])
-                    print(33333333)
-                    print(item_to_sell['number'])
+                    # print(33333333)
+                    # print(item_to_sell['number'])
                     item.quantity = item.quantity - int(item_to_sell['number'])
 
                     # print('somehow success')
                     item.save()
                     # print('success shaa')
-                print(request.data)
+                # print(request.data)
                 sale = Sale.objects.create(
                     customer=customer,
                     customer_name=request.data.get('customerName'),
@@ -81,7 +83,6 @@ class ListCreateSalesView(generics.ListCreateAPIView):
                     company_phone1=config.phone1,
                     company_phone2=config.phone2,
                     company_email=config.email)
-                print('error now')
 
                 if request.data.get('comments'):
                     sale.comments = request.data.get('comments')
@@ -133,6 +134,26 @@ class ListAnySalesView(generics.ListAPIView):
 
             sales = sales.filter(filter_query)
 
+        if request.query_params.get("csv"):
+            csv_mode = request.query_params.get("csv")
+            if csv_mode.lower() == "true":
+
+                sales_serializer = SaleSerializer(sales, many=True)
+
+                response = HttpResponse(
+                    content_type="text/csv",
+                    headers={
+                        "Content-Disposition": 'attachment; filename="SalesReport.csv"'},
+                )
+                writer = csv.writer(response)
+                writer.writerow(["DATE", "EMPLOYEE", "SOLD TO", "QTY", "SUBTOTAL", "DISC.", "PAID"])
+
+                for row in sales_serializer.data:
+                    writer.writerow([row['date'], row['employee_name'], row['customer_name'], row['sum_items'], row['sub_total'], row['discount'], row['paid_cash']])
+                return response
+
+        
+
         sales_serializer = SaleSerializer(
             self.paginate_queryset(sales), many=True)
 
@@ -146,9 +167,10 @@ class DeleteSalesView(generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
         sale = get_object_or_404(Sale, id=request.data.get(
             "id"), employee=request.user.id)
+        sales_id = sale.id
         sale.delete()
 
-        return response.Response({'detail': 'success'}, status=status.HTTP_200_OK)
+        return response.Response({'detail': 'success', 'id': sales_id}, status=status.HTTP_200_OK)
 
 
 class DeleteAnySaleView(generics.CreateAPIView):
@@ -157,9 +179,10 @@ class DeleteAnySaleView(generics.CreateAPIView):
 
     def post(self, request, *args, **kwargs):
         sale = get_object_or_404(Sale, id=request.data.get("id"))
+        sales_id = sale.id
         sale.delete()
 
-        return response.Response({'detail': 'success'}, status=status.HTTP_200_OK)
+        return response.Response({'detail': 'success', 'id': sales_id}, status=status.HTTP_200_OK)
 
 
 class DailyReportView(generics.ListAPIView):
@@ -176,6 +199,23 @@ class DailyReportView(generics.ListAPIView):
 
         days = sales.annotate(day=TruncDate('date')).values('day').annotate(total_amount=Sum(
             'sub_total'), no_of_sales=Count('id'), total_items=Sum('sum_items')).order_by('day')
+        
+        if request.query_params.get("csv"):
+            csv_mode = request.query_params.get("csv")
+            if csv_mode.lower() == "true":
+                response = HttpResponse(
+                content_type="text/csv",
+                headers={
+                    "Content-Disposition": 'attachment; filename="DailySummary.csv"'},
+                )
+                writer = csv.writer(response)
+                writer.writerow(["DATE", "NO. OF SALES	", "TOTAL QTY. SOLD", "TOTAL AMOUNT"])
+
+                for row in days:
+                #print(row['day'].strftime("%Y-%m-%d"))
+                    writer.writerow([row['day'], row['no_of_sales'], row['total_items'], row['total_amount']])
+                return response
+            
 
         if request.query_params.get("recent"):
             recent = int(request.query_params.get("recent"))
@@ -212,7 +252,21 @@ class CustomerSummaryReportView(generics.ListAPIView):
                                                                                                                                                                                                              'total_paid',
                                                                                                                                                                                                              'no_of_sales',
                                                                                                                                                                                                              'total_items',
-                                                                                                                                                                                                             'customers_name').order_by('-total_amount')
+                                                                                                                                                                                                            'customers_name').order_by('-total_amount')
+        if request.query_params.get("csv").lower() == "true":
+            response = HttpResponse(
+                content_type="text/csv",
+                headers={
+                    "Content-Disposition": 'attachment; filename="CustomerSummary.csv"'},
+            )
+            writer = csv.writer(response)
+            writer.writerow(["CUSTOMER NAME", "NO. OF PURCHASES	", "TOTAL QTY. PURCHASED", "TOTAL AMOUNT", "TOTAL PAID"])
+
+            for row in customers:
+                writer.writerow([row['customers_name'], row['no_of_sales'], row['total_items'], row['total_amount'], row['total_paid']])
+            return response
+            
+
         customer_report_serializer = CustomerReportSerializer(
             self.paginate_queryset(customers), many=True)
 
@@ -243,6 +297,19 @@ class EmployeeSummaryReportView(generics.ListAPIView):
                                                                                                                                                                                                              'no_of_sales',
                                                                                                                                                                                                              'total_items',
                                                                                                                                                                                                              'employees_name')
+        if request.query_params.get("csv").lower() == "true":
+            response = HttpResponse(
+                content_type="text/csv",
+                headers={
+                    "Content-Disposition": 'attachment; filename="EmployeeSummary.csv"'},
+            )
+            writer = csv.writer(response)
+            writer.writerow(["EMPLOYEE NAME", "NO. OF SALES	", "TOTAL QTY. SOLD", "TOTAL AMOUNT", "TOTAL PAID"])
+
+            for row in employees:
+                writer.writerow([row['employees_name'], row['no_of_sales'], row['total_items'], row['total_amount'], row['total_paid']])
+            return response
+        
         employee_report_serializer = EmployeeReportSerializer(
             self.paginate_queryset(employees), many=True)
 
@@ -267,6 +334,22 @@ class ItemInventoryView(generics.ListAPIView):
         if request.query_params.get("max"):
             max = request.query_params.get("max")
             items = items.filter(quantity__lte=max)
+
+        if request.query_params.get("csv").lower() == "true":
+
+            items_serializer = ItemSerializer(items, many=True)
+
+            response = HttpResponse(
+                content_type="text/csv",
+                headers={
+                    "Content-Disposition": 'attachment; filename="ItemInventoryReport.csv"'},
+            )
+            writer = csv.writer(response)
+            writer.writerow(["ITEM NAME", "TOTAL QTY. LEFT"])
+
+            for row in items_serializer.data:
+                writer.writerow([row['name'], row['quantity']])
+            return response
 
         items_serializer = ItemSerializer(
             self.paginate_queryset(items), many=True)
@@ -346,13 +429,20 @@ class DashboardCategoryChartView(generics.ListAPIView):
     def get(self, request, *args, **kwargs):
 
         categories = Category.objects.filter(items__isnull=False).annotate(
-            total_quantity=Sum('items__quantity')).order_by('-total_quantity')
+            total_quantity=Sum(Case(
+                When(items__quantity__gt=0, then=F('items__quantity')),
+                default=Value(0),
+                output_field=IntegerField()
+            ))).order_by('-total_quantity')
+        # print(categories)
 
         first_five_categories = categories[:5]
         first_five_sum = first_five_categories.aggregate(
             total_sum=Sum('total_quantity'))['total_sum']
         total_sum = categories.aggregate(
             total_sum=Sum('total_quantity'))['total_sum']
+        print("total sum", total_sum)
+        print("first_five_sum", first_five_sum)
         remaining_sum = total_sum - first_five_sum
 
         first_five_serializers = CategoryChartSerializer(
@@ -360,7 +450,7 @@ class DashboardCategoryChartView(generics.ListAPIView):
         others = dict()
         others['name'] = 'others'
         others['total_quantity'] = remaining_sum
-        print("the firsr five", first_five_serializers.data)
+        # print("the firsr five", first_five_serializers.data)
 
         return response.Response({'first_five': first_five_serializers.data, 'others': others}, status=status.HTTP_200_OK)
 

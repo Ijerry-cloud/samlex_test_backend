@@ -103,7 +103,7 @@ class ListCreateUserView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated, EmployeesAccessPermission]
     
     def get(self, request, *args, **kwargs):
-        users = User.objects.all()
+        users = User.objects.all().order_by('username')
 
         if request.query_params.get(PARAM_QUERY_BY_EMPLOYEE_USERNAME):
             users = users.filter(username__icontains = request.query_params.get(PARAM_QUERY_BY_EMPLOYEE_USERNAME))
@@ -236,6 +236,7 @@ class UpdateUserView(generics.CreateAPIView):
             return response.Response({
                 "detail": serializer.data
             }, status=status.HTTP_200_OK)
+        print(serializer.errors)
         return response.Response(
             {
                 "error": serializer.errors
@@ -284,12 +285,13 @@ class DeleteOneUserView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated, EmployeesAccessPermission]
     
     def post(self, request, *args, **kwargs):
-        print(request.data.get("username"))
+        
         
         user = get_object_or_404(User, username=request.data.get("username"))
+        user_id = user.id
         user.delete()
         
-        return response.Response({'detail': 'success'}, status=status.HTTP_200_OK)
+        return response.Response({'detail': 'success', 'id': user_id}, status=status.HTTP_200_OK)
 
     
 class ProfileView(generics.ListCreateAPIView):
