@@ -33,7 +33,7 @@ class UploadItemCSVFileView(generics.CreateAPIView):
         file = serializer.validated_data['file']
         reader = pd.read_csv(file)
         read_values = reader.fillna(0)
-        print(read_values)
+        #print(read_values)
 
         for _, row in read_values.iterrows():
             new_item = Item(

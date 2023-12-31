@@ -146,13 +146,13 @@ class ListAnySalesView(generics.ListAPIView):
                         "Content-Disposition": 'attachment; filename="SalesReport.csv"'},
                 )
                 writer = csv.writer(response)
-                writer.writerow(["DATE", "EMPLOYEE", "SOLD TO", "QTY", "SUBTOTAL", "DISC.", "PAID"])
+                writer.writerow(["DATE", "EMPLOYEE", "SOLD TO",
+                                "QTY", "SUBTOTAL", "DISC.", "PAID"])
 
                 for row in sales_serializer.data:
-                    writer.writerow([row['date'], row['employee_name'], row['customer_name'], row['sum_items'], row['sub_total'], row['discount'], row['paid_cash']])
+                    writer.writerow([row['date'], row['employee_name'], row['customer_name'],
+                                    row['sum_items'], row['sub_total'], row['discount'], row['paid_cash']])
                 return response
-
-        
 
         sales_serializer = SaleSerializer(
             self.paginate_queryset(sales), many=True)
@@ -199,23 +199,24 @@ class DailyReportView(generics.ListAPIView):
 
         days = sales.annotate(day=TruncDate('date')).values('day').annotate(total_amount=Sum(
             'sub_total'), no_of_sales=Count('id'), total_items=Sum('sum_items')).order_by('day')
-        
+
         if request.query_params.get("csv"):
             csv_mode = request.query_params.get("csv")
             if csv_mode.lower() == "true":
                 response = HttpResponse(
-                content_type="text/csv",
-                headers={
-                    "Content-Disposition": 'attachment; filename="DailySummary.csv"'},
+                    content_type="text/csv",
+                    headers={
+                        "Content-Disposition": 'attachment; filename="DailySummary.csv"'},
                 )
                 writer = csv.writer(response)
-                writer.writerow(["DATE", "NO. OF SALES	", "TOTAL QTY. SOLD", "TOTAL AMOUNT"])
+                writer.writerow(
+                    ["DATE", "NO. OF SALES	", "TOTAL QTY. SOLD", "TOTAL AMOUNT"])
 
                 for row in days:
-                #print(row['day'].strftime("%Y-%m-%d"))
-                    writer.writerow([row['day'], row['no_of_sales'], row['total_items'], row['total_amount']])
+                    # print(row['day'].strftime("%Y-%m-%d"))
+                    writer.writerow(
+                        [row['day'], row['no_of_sales'], row['total_items'], row['total_amount']])
                 return response
-            
 
         if request.query_params.get("recent"):
             recent = int(request.query_params.get("recent"))
@@ -252,7 +253,7 @@ class CustomerSummaryReportView(generics.ListAPIView):
                                                                                                                                                                                                              'total_paid',
                                                                                                                                                                                                              'no_of_sales',
                                                                                                                                                                                                              'total_items',
-                                                                                                                                                                                                            'customers_name').order_by('-total_amount')
+                                                                                                                                                                                                             'customers_name').order_by('-total_amount')
         if request.query_params.get("csv").lower() == "true":
             response = HttpResponse(
                 content_type="text/csv",
@@ -260,12 +261,13 @@ class CustomerSummaryReportView(generics.ListAPIView):
                     "Content-Disposition": 'attachment; filename="CustomerSummary.csv"'},
             )
             writer = csv.writer(response)
-            writer.writerow(["CUSTOMER NAME", "NO. OF PURCHASES	", "TOTAL QTY. PURCHASED", "TOTAL AMOUNT", "TOTAL PAID"])
+            writer.writerow(["CUSTOMER NAME", "NO. OF PURCHASES	",
+                            "TOTAL QTY. PURCHASED", "TOTAL AMOUNT", "TOTAL PAID"])
 
             for row in customers:
-                writer.writerow([row['customers_name'], row['no_of_sales'], row['total_items'], row['total_amount'], row['total_paid']])
+                writer.writerow([row['customers_name'], row['no_of_sales'],
+                                row['total_items'], row['total_amount'], row['total_paid']])
             return response
-            
 
         customer_report_serializer = CustomerReportSerializer(
             self.paginate_queryset(customers), many=True)
@@ -304,12 +306,14 @@ class EmployeeSummaryReportView(generics.ListAPIView):
                     "Content-Disposition": 'attachment; filename="EmployeeSummary.csv"'},
             )
             writer = csv.writer(response)
-            writer.writerow(["EMPLOYEE NAME", "NO. OF SALES	", "TOTAL QTY. SOLD", "TOTAL AMOUNT", "TOTAL PAID"])
+            writer.writerow(["EMPLOYEE NAME", "NO. OF SALES	",
+                            "TOTAL QTY. SOLD", "TOTAL AMOUNT", "TOTAL PAID"])
 
             for row in employees:
-                writer.writerow([row['employees_name'], row['no_of_sales'], row['total_items'], row['total_amount'], row['total_paid']])
+                writer.writerow([row['employees_name'], row['no_of_sales'],
+                                row['total_items'], row['total_amount'], row['total_paid']])
             return response
-        
+
         employee_report_serializer = EmployeeReportSerializer(
             self.paginate_queryset(employees), many=True)
 
@@ -407,7 +411,7 @@ class DashboardGetCountView(generics.ListAPIView):
             sales__isnull=True, sales_perm=True).count()
 
         data = dict()
-        data['items'] = Item.objects.count()
+        data['items'] = Item.objects.filter(quantity__gte=0).aggregate(total_sum=Sum('quantity'))['total_sum']
         data['customers'] = Customer.objects.count()
         data['sales'] = Sale.objects.count()
         data['employees'] = User.objects.count()
@@ -441,8 +445,8 @@ class DashboardCategoryChartView(generics.ListAPIView):
             total_sum=Sum('total_quantity'))['total_sum']
         total_sum = categories.aggregate(
             total_sum=Sum('total_quantity'))['total_sum']
-        print("total sum", total_sum)
-        print("first_five_sum", first_five_sum)
+        #print("total sum", total_sum)
+        #print("first_five_sum", first_five_sum)
         remaining_sum = total_sum - first_five_sum
 
         first_five_serializers = CategoryChartSerializer(

@@ -4,7 +4,7 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth import get_user_model
 from rest_framework.authtoken.models import Token
 from .models import StoreConfig
-from .serializers import UserSerializer, CreateUserSerializer, GetAllUsersSerializer, StoreConfigSerializer
+from .serializers import UserSerializer, CreateUserSerializer, GetAllUsersSerializer, StoreConfigSerializer, UserLoginSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from accounts.authentication import BearerTokenAuthentication
@@ -28,6 +28,7 @@ class LoginView(generics.CreateAPIView):
         
         
         user = get_object_or_404(User, email=request.data.get('email'))
+
         
 
 
@@ -37,7 +38,7 @@ class LoginView(generics.CreateAPIView):
         
         # if password does not match 
         if not user.check_password(request.data.get('password')):
-            print(request.data.get('password'))
+            #print(request.data.get('password'))
             return response.Response({'detail': 'invalid credentials'}, status=status.HTTP_400_BAD_REQUEST)    
         
         # delete all previous tokens
@@ -47,10 +48,11 @@ class LoginView(generics.CreateAPIView):
         token = Token.objects.create(user=user)
         
         data = dict()
-        data['user'] = UserSerializer(user).data
+        data['user'] = UserLoginSerializer(user).data
         data['token'] = token.key
+        #print(data['user'])
         
-        return response.Response(data, status=status.HTTP_201_CREATED)
+        return response.Response(data, status=status.HTTP_200_OK)
     
 
 class LogoutView(generics.CreateAPIView):
@@ -127,7 +129,7 @@ class ListCreateUserView(generics.ListCreateAPIView):
             users = users.filter(is_active=value)
         
         
-        user_serializer = UserSerializer(self.paginate_queryset(users), many=True)
+        user_serializer = UserLoginSerializer(self.paginate_queryset(users), many=True)
         
         return self.paginator.get_paginated_response(user_serializer.data)    
     
@@ -143,8 +145,8 @@ class ListCreateUserView(generics.ListCreateAPIView):
                 return response.Response({
                     "detail": "This username already exists"
                 }, status=status.HTTP_400_BAD_REQUEST)
-            print(request.data.get("customer_perm"))
-            print(request.data)
+            #print(request.data.get("customer_perm"))
+            #print(request.data)
 
             user = User.objects.create(
                 is_lead=False,
@@ -184,7 +186,7 @@ class ListCreateUserView(generics.ListCreateAPIView):
                 status=status.HTTP_201_CREATED
             )
         except Exception as e:
-            print(e)
+            #print(e)
             return response.Response(
                 {
                     "detail": "Oops! something went wrong, please contact the admin",
@@ -218,25 +220,25 @@ class UpdateUserView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated, EmployeesAccessPermission]
     
     def post(self, request, *args, **kwargs):
-        print(request.user)
+        #print(request.user)
         user = get_object_or_404(User, username=request.data.get("user_data")['username'])
-        print(request.data.get("user_data")['username'])
+        #print(request.data.get("user_data")['username'])
         user_serializer = UserSerializer(user)
 
-        serializer = UserSerializer(user, data=request.data.get("user_data"), partial=True)
+        serializer = UserLoginSerializer(user, data=request.data.get("user_data"), partial=True)
         if serializer.is_valid(raise_exception=False):
             serializer.save()
 
             #update password if password is contained in the request
             if request.data.get("user_password")['password']:
-                print('shouldnt get to here')
+                #print('shouldnt get to here')
                 user.set_password(request.data.get("user_password")['password'])
                 user.save()
 
             return response.Response({
                 "detail": serializer.data
             }, status=status.HTTP_200_OK)
-        print(serializer.errors)
+        #print(serializer.errors)
         return response.Response(
             {
                 "error": serializer.errors
@@ -305,8 +307,8 @@ class ProfileView(generics.ListCreateAPIView):
         
         data = dict()
         
-        user = UserSerializer(request.user).data
-        same_dept_users = UserSerializer(same_dept, many=True).data    
+        user = UserLoginSerializer(request.user).data
+        same_dept_users = UserLoginSerializer(same_dept, many=True).data    
         return response.Response({'detail': user, 'others': same_dept_users}, status=status.HTTP_200_OK)
     
 class GetSalesConfigView(generics.ListAPIView):

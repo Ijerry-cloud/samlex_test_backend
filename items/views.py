@@ -118,7 +118,7 @@ class ListCreateItemView(generics.CreateAPIView):
         if serializer.is_valid(raise_exception=False):
             
             serializer.save()
-            print(serializer.data)
+            #print(serializer.data)
             return response.Response({
                 "detail": serializer.data
             }, status=status.HTTP_200_OK)
@@ -161,7 +161,7 @@ class UpdateItemView(generics.CreateAPIView):
             return response.Response({
                 "detail": serializer.data
             }, status=status.HTTP_200_OK)
-        print(serializer.errors)
+        #print(serializer.errors)
         return response.Response(
             {
                 "error": serializer.errors

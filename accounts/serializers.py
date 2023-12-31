@@ -17,6 +17,18 @@ class UserSerializer(serializers.ModelSerializer):
     def get_department_name(self, obj):
         return obj.get_dept_display()
     
+class UserLoginSerializer(serializers.ModelSerializer):
+    
+    department_name = serializers.SerializerMethodField()
+    #sales = serializers.StringRelatedField(many=True)
+
+    class Meta:
+        model = User
+        exclude = ['password']
+
+    def get_department_name(self, obj):
+        return obj.get_dept_display()
+    
 
     
 class GetAllUsersSerializer(serializers.ModelSerializer):
