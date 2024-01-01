@@ -144,12 +144,12 @@ APPEND_SLASH = False
 # EFT_ENGINE_HOST = os.environ.get("EFT_ENGINE_HOST")
 # EFT_ENGINE_PORT = os.environ.get("EFT_ENGINE_PORT")
 # EFT_ENGINE = os.environ.get("EFT_ENGINE")
-EFT_ENGINE_USER = os.environ.get("EFT_MDB_USER")
-EFT_ENGINE_PASS = os.environ.get("EFT_MDB_PASS")
-EFT_ENGINE_HOST = os.environ.get("EFT_MDB_HOST")
-EFT_ENGINE_PORT = os.environ.get("EFT_MDB_PORT")
-EFT_ENGINE = os.environ.get("EFT_MDB_ENGINE")
-EFT_ENGINE_CONN_URL = f"mongodb://{EFT_ENGINE_USER}:{parse.quote_plus(EFT_ENGINE_PASS)}@{EFT_ENGINE_HOST}:{EFT_ENGINE_PORT}/{EFT_ENGINE}"
+#EFT_ENGINE_USER = os.environ.get("EFT_MDB_USER")
+#EFT_ENGINE_PASS = os.environ.get("EFT_MDB_PASS")
+#EFT_ENGINE_HOST = os.environ.get("EFT_MDB_HOST")
+#EFT_ENGINE_PORT = os.environ.get("EFT_MDB_PORT")
+#EFT_ENGINE = os.environ.get("EFT_MDB_ENGINE")
+#EFT_ENGINE_CONN_URL = f"mongodb://{EFT_ENGINE_USER}:{parse.quote_plus(EFT_ENGINE_PASS)}@{EFT_ENGINE_HOST}:{EFT_ENGINE_PORT}/{EFT_ENGINE}"
 
 
 REST_FRAMEWORK = {
