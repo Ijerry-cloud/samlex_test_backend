@@ -1,4 +1,8 @@
 
+//change settings back to use environmental variables
+//change the path to admin to /men-wey-sabi
+//set debug=false in the settings.py file when in production and true when in local
+//set the database to be msql in pythonanywhere and use your local postgres in local
 
 
 //remove everything concerning etop reporting
