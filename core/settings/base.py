@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
+print(1111111111111111111111111111)
 from pathlib import Path
+print(2222222222222222222222222222222222)
 from urllib import parse
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,6 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-=(!!1nap5k-&+t78obus2a79_k4+nqm01345*dfzd$++0hl%$-"
+print(33333333333333333333333333333333)
 
 
 # Application definition
@@ -57,6 +60,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+print(444444444444444444444444444444444444)
 
 ROOT_URLCONF = "core.urls"
 
@@ -75,6 +79,7 @@ TEMPLATES = [
         },
     },
 ]
+print(5555555555555555555555555555555555)
 
 WSGI_APPLICATION = "core.wsgi.application"
 
@@ -111,6 +116,7 @@ TIME_ZONE = "Africa/Lagos"
 USE_I18N = True
 
 USE_TZ = True
+print(66666666666666666666666666666)
 
 
 # Static files (CSS, JavaScript, Images)
@@ -150,7 +156,7 @@ APPEND_SLASH = False
 #EFT_ENGINE_PORT = os.environ.get("EFT_MDB_PORT")
 #EFT_ENGINE = os.environ.get("EFT_MDB_ENGINE")
 #EFT_ENGINE_CONN_URL = f"mongodb://{EFT_ENGINE_USER}:{parse.quote_plus(EFT_ENGINE_PASS)}@{EFT_ENGINE_HOST}:{EFT_ENGINE_PORT}/{EFT_ENGINE}"
-
+print(777777777777777777777777777777777777)
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
