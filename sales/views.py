@@ -98,7 +98,7 @@ class ListCreateSalesView(generics.ListCreateAPIView):
             return response.Response(
                 {
                     "detail": "Oops! something went wrong, please contact the admin",
-                    "error": e
+                    "error": str(e)
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
