@@ -5,6 +5,9 @@
 //set the database to be msql in pythonanywhere and use your local postgres in local
 
 
+////change BASE_URL to 127.0.0.1 for local and https://jerrychinedu.pythonanywhere.com/react/#/auth/signin for prod
+
+
 //remove everything concerning etop reporting
 
 //in the core.urls make all routes except admin to go to etop, for others that dont go to etop, make them not result in rendering the browsabele api
