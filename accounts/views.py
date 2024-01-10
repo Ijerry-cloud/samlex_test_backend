@@ -50,6 +50,9 @@ class LoginView(generics.CreateAPIView):
         data = dict()
         data['user'] = UserLoginSerializer(user).data
         data['token'] = token.key
+        print('response is -------------')
+        #dict(response._headers.items())
+        print(request.headers)
         #print(data['user'])
         
         return response.Response(data, status=status.HTTP_200_OK)
