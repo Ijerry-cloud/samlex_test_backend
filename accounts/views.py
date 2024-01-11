@@ -20,13 +20,18 @@ COMPANY_NAME = "SAMLEX ELECTRONICS COMPANY LTD"
 # Create your views here.
 class LoginView(generics.CreateAPIView):
     
+    authentication_classes = []
+    permission_classes = []
+
     def post(self, request, *args, **kwargs):
         
         # TODO:
         # add validation to ensure email and password are provided
         # in the post body
         
-        
+        print('response is -------------')
+        #dict(response._headers.items())
+        print(request.headers)
         user = get_object_or_404(User, email=request.data.get('email'))
 
         
@@ -50,9 +55,7 @@ class LoginView(generics.CreateAPIView):
         data = dict()
         data['user'] = UserLoginSerializer(user).data
         data['token'] = token.key
-        print('response is -------------')
-        #dict(response._headers.items())
-        print(request.headers)
+
         #print(data['user'])
         
         return response.Response(data, status=status.HTTP_200_OK)
