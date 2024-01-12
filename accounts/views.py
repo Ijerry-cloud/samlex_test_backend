@@ -15,7 +15,7 @@ User = get_user_model()
 
 PARAM_QUERY_BY_EMPLOYEE_USERNAME = "username"
 PARAM_QUERY_PAGE_NUMBER = "page"
-COMPANY_NAME = "SAMLEX ELECTRONICS COMPANY LTD"
+COMPANY_NAME = "j.cloud.dev"
 
 # Create your views here.
 class LoginView(generics.CreateAPIView):
