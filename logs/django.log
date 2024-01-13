@@ -1,0 +1,400 @@
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/urls/resolvers.py", line 683, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'accounts.urls' from '/home/jerrychinedu/samlex_test_backend/accounts/urls.py'> (None:None) 'authentication/'>], [<URLPattern 'react/'>], [<URLResolver <module 'people.urls' from '/home/jerrychinedu/samlex_test_backend/people/urls.py'> (None:None) 'people/'>], [<URLResolver <module 'items.urls' from '/home/jerrychinedu/samlex_test_backend/items/urls.py'> (None:None) 'items/'>], [<URLResolver <module 'sales.urls' from '/home/jerrychinedu/samlex_test_backend/sales/urls.py'> (None:None) 'sales/'>], [<URLPattern '^static/(?P<path>.*)$'>]], 'path': ''}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/template/base.py", line 875, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/template/base.py", line 885, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/template/base.py", line 891, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/template/base.py", line 898, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <URLPattern list> (admin:admin) 'admin/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/urls/resolvers.py", line 683, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'accounts.urls' from '/home/jerrychinedu/samlex_test_backend/accounts/urls.py'> (None:None) 'authentication/'>], [<URLPattern 'react/'>], [<URLResolver <module 'people.urls' from '/home/jerrychinedu/samlex_test_backend/people/urls.py'> (None:None) 'people/'>], [<URLResolver <module 'items.urls' from '/home/jerrychinedu/samlex_test_backend/items/urls.py'> (None:None) 'items/'>], [<URLResolver <module 'sales.urls' from '/home/jerrychinedu/samlex_test_backend/sales/urls.py'> (None:None) 'sales/'>], [<URLPattern '^static/(?P<path>.*)$'>]], 'path': ''}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/template/base.py", line 875, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/template/base.py", line 885, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/template/base.py", line 891, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/template/base.py", line 898, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'accounts.urls' from '/home/jerrychinedu/samlex_test_backend/accounts/urls.py'> (None:None) 'authentication/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/urls/resolvers.py", line 683, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'accounts.urls' from '/home/jerrychinedu/samlex_test_backend/accounts/urls.py'> (None:None) 'authentication/'>], [<URLPattern 'react/'>], [<URLResolver <module 'people.urls' from '/home/jerrychinedu/samlex_test_backend/people/urls.py'> (None:None) 'people/'>], [<URLResolver <module 'items.urls' from '/home/jerrychinedu/samlex_test_backend/items/urls.py'> (None:None) 'items/'>], [<URLResolver <module 'sales.urls' from '/home/jerrychinedu/samlex_test_backend/sales/urls.py'> (None:None) 'sales/'>], [<URLPattern '^static/(?P<path>.*)$'>]], 'path': ''}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/template/base.py", line 875, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/template/base.py", line 885, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/template/base.py", line 891, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/template/base.py", line 898, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'people.urls' from '/home/jerrychinedu/samlex_test_backend/people/urls.py'> (None:None) 'people/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/urls/resolvers.py", line 683, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'accounts.urls' from '/home/jerrychinedu/samlex_test_backend/accounts/urls.py'> (None:None) 'authentication/'>], [<URLPattern 'react/'>], [<URLResolver <module 'people.urls' from '/home/jerrychinedu/samlex_test_backend/people/urls.py'> (None:None) 'people/'>], [<URLResolver <module 'items.urls' from '/home/jerrychinedu/samlex_test_backend/items/urls.py'> (None:None) 'items/'>], [<URLResolver <module 'sales.urls' from '/home/jerrychinedu/samlex_test_backend/sales/urls.py'> (None:None) 'sales/'>], [<URLPattern '^static/(?P<path>.*)$'>]], 'path': ''}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/template/base.py", line 875, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/template/base.py", line 885, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/template/base.py", line 891, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/template/base.py", line 898, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'items.urls' from '/home/jerrychinedu/samlex_test_backend/items/urls.py'> (None:None) 'items/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/urls/resolvers.py", line 683, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'accounts.urls' from '/home/jerrychinedu/samlex_test_backend/accounts/urls.py'> (None:None) 'authentication/'>], [<URLPattern 'react/'>], [<URLResolver <module 'people.urls' from '/home/jerrychinedu/samlex_test_backend/people/urls.py'> (None:None) 'people/'>], [<URLResolver <module 'items.urls' from '/home/jerrychinedu/samlex_test_backend/items/urls.py'> (None:None) 'items/'>], [<URLResolver <module 'sales.urls' from '/home/jerrychinedu/samlex_test_backend/sales/urls.py'> (None:None) 'sales/'>], [<URLPattern '^static/(?P<path>.*)$'>]], 'path': ''}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/template/base.py", line 875, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/template/base.py", line 885, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/template/base.py", line 891, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/template/base.py", line 898, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'sales.urls' from '/home/jerrychinedu/samlex_test_backend/sales/urls.py'> (None:None) 'sales/'>
+Not Found: /
+(0.000) 
+                SELECT VERSION(),
+                       @@sql_mode,
+                       @@default_storage_engine,
+                       @@sql_auto_is_null,
+                       @@lower_case_table_names,
+                       CONVERT_TZ('2001-01-01 01:00:00', 'UTC', 'UTC') IS NOT NULL
+            ; args=None; alias=default
+(0.002) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None; alias=default
+(0.004) SELECT `authtoken_token`.`key`, `authtoken_token`.`user_id`, `authtoken_token`.`created`, `accounts_user`.`id`, `accounts_user`.`password`, `accounts_user`.`last_login`, `accounts_user`.`is_superuser`, `accounts_user`.`is_staff`, `accounts_user`.`is_active`, `accounts_user`.`date_joined`, `accounts_user`.`username`, `accounts_user`.`uuid`, `accounts_user`.`email_confirmed`, `accounts_user`.`is_lead`, `accounts_user`.`first_name`, `accounts_user`.`last_name`, `accounts_user`.`phone_no`, `accounts_user`.`address_1`, `accounts_user`.`address_2`, `accounts_user`.`city`, `accounts_user`.`state`, `accounts_user`.`zip`, `accounts_user`.`country`, `accounts_user`.`customer_perm`, `accounts_user`.`items_perm`, `accounts_user`.`item_kits_perm`, `accounts_user`.`suppliers_perm`, `accounts_user`.`reports_perm`, `accounts_user`.`receivings_perm`, `accounts_user`.`sales_perm`, `accounts_user`.`employees_perm`, `accounts_user`.`email`, `accounts_user`.`dept`, `accounts_user`.`gender` FROM `authtoken_token` INNER JOIN `accounts_user` ON (`authtoken_token`.`user_id` = `accounts_user`.`id`) WHERE `authtoken_token`.`key` = '53133c0dde18ef1aa61429133f8834c88ba41ab6' LIMIT 21; args=('53133c0dde18ef1aa61429133f8834c88ba41ab6',); alias=default
+(0.038) SELECT COUNT(*) AS `__count` FROM `accounts_user`; args=(); alias=default
+(0.001) SELECT `accounts_user`.`id`, `accounts_user`.`password`, `accounts_user`.`last_login`, `accounts_user`.`is_superuser`, `accounts_user`.`is_staff`, `accounts_user`.`is_active`, `accounts_user`.`date_joined`, `accounts_user`.`username`, `accounts_user`.`uuid`, `accounts_user`.`email_confirmed`, `accounts_user`.`is_lead`, `accounts_user`.`first_name`, `accounts_user`.`last_name`, `accounts_user`.`phone_no`, `accounts_user`.`address_1`, `accounts_user`.`address_2`, `accounts_user`.`city`, `accounts_user`.`state`, `accounts_user`.`zip`, `accounts_user`.`country`, `accounts_user`.`customer_perm`, `accounts_user`.`items_perm`, `accounts_user`.`item_kits_perm`, `accounts_user`.`suppliers_perm`, `accounts_user`.`reports_perm`, `accounts_user`.`receivings_perm`, `accounts_user`.`sales_perm`, `accounts_user`.`employees_perm`, `accounts_user`.`email`, `accounts_user`.`dept`, `accounts_user`.`gender` FROM `accounts_user` ORDER BY `accounts_user`.`username` ASC LIMIT 5; args=(); alias=default
+(0.001) SELECT `auth_group`.`id`, `auth_group`.`name` FROM `auth_group` INNER JOIN `accounts_user_groups` ON (`auth_group`.`id` = `accounts_user_groups`.`group_id`) WHERE `accounts_user_groups`.`user_id` = 2; args=(2,); alias=default
+(0.002) SELECT `auth_permission`.`id`, `auth_permission`.`name`, `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `accounts_user_user_permissions` ON (`auth_permission`.`id` = `accounts_user_user_permissions`.`permission_id`) INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `accounts_user_user_permissions`.`user_id` = 2 ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(2,); alias=default
+(0.000) SELECT `auth_group`.`id`, `auth_group`.`name` FROM `auth_group` INNER JOIN `accounts_user_groups` ON (`auth_group`.`id` = `accounts_user_groups`.`group_id`) WHERE `accounts_user_groups`.`user_id` = 1; args=(1,); alias=default
+(0.000) SELECT `auth_permission`.`id`, `auth_permission`.`name`, `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `accounts_user_user_permissions` ON (`auth_permission`.`id` = `accounts_user_user_permissions`.`permission_id`) INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `accounts_user_user_permissions`.`user_id` = 1 ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(1,); alias=default
+(0.000) SELECT `auth_group`.`id`, `auth_group`.`name` FROM `auth_group` INNER JOIN `accounts_user_groups` ON (`auth_group`.`id` = `accounts_user_groups`.`group_id`) WHERE `accounts_user_groups`.`user_id` = 4; args=(4,); alias=default
+(0.000) SELECT `auth_permission`.`id`, `auth_permission`.`name`, `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `accounts_user_user_permissions` ON (`auth_permission`.`id` = `accounts_user_user_permissions`.`permission_id`) INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `accounts_user_user_permissions`.`user_id` = 4 ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(4,); alias=default
+(0.003) SELECT `auth_group`.`id`, `auth_group`.`name` FROM `auth_group` INNER JOIN `accounts_user_groups` ON (`auth_group`.`id` = `accounts_user_groups`.`group_id`) WHERE `accounts_user_groups`.`user_id` = 5; args=(5,); alias=default
+(0.003) SELECT `auth_permission`.`id`, `auth_permission`.`name`, `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `accounts_user_user_permissions` ON (`auth_permission`.`id` = `accounts_user_user_permissions`.`permission_id`) INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `accounts_user_user_permissions`.`user_id` = 5 ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(5,); alias=default
+(0.003) SELECT `auth_group`.`id`, `auth_group`.`name` FROM `auth_group` INNER JOIN `accounts_user_groups` ON (`auth_group`.`id` = `accounts_user_groups`.`group_id`) WHERE `accounts_user_groups`.`user_id` = 3; args=(3,); alias=default
+(0.003) SELECT `auth_permission`.`id`, `auth_permission`.`name`, `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `accounts_user_user_permissions` ON (`auth_permission`.`id` = `accounts_user_user_permissions`.`permission_id`) INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `accounts_user_user_permissions`.`user_id` = 3 ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(3,); alias=default
+(0.004) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None; alias=default
+(0.004) SELECT `authtoken_token`.`key`, `authtoken_token`.`user_id`, `authtoken_token`.`created`, `accounts_user`.`id`, `accounts_user`.`password`, `accounts_user`.`last_login`, `accounts_user`.`is_superuser`, `accounts_user`.`is_staff`, `accounts_user`.`is_active`, `accounts_user`.`date_joined`, `accounts_user`.`username`, `accounts_user`.`uuid`, `accounts_user`.`email_confirmed`, `accounts_user`.`is_lead`, `accounts_user`.`first_name`, `accounts_user`.`last_name`, `accounts_user`.`phone_no`, `accounts_user`.`address_1`, `accounts_user`.`address_2`, `accounts_user`.`city`, `accounts_user`.`state`, `accounts_user`.`zip`, `accounts_user`.`country`, `accounts_user`.`customer_perm`, `accounts_user`.`items_perm`, `accounts_user`.`item_kits_perm`, `accounts_user`.`suppliers_perm`, `accounts_user`.`reports_perm`, `accounts_user`.`receivings_perm`, `accounts_user`.`sales_perm`, `accounts_user`.`employees_perm`, `accounts_user`.`email`, `accounts_user`.`dept`, `accounts_user`.`gender` FROM `authtoken_token` INNER JOIN `accounts_user` ON (`authtoken_token`.`user_id` = `accounts_user`.`id`) WHERE `authtoken_token`.`key` = '53133c0dde18ef1aa61429133f8834c88ba41ab6' LIMIT 21; args=('53133c0dde18ef1aa61429133f8834c88ba41ab6',); alias=default
+(0.002) SELECT `accounts_user`.`id`, `accounts_user`.`password`, `accounts_user`.`last_login`, `accounts_user`.`is_superuser`, `accounts_user`.`is_staff`, `accounts_user`.`is_active`, `accounts_user`.`date_joined`, `accounts_user`.`username`, `accounts_user`.`uuid`, `accounts_user`.`email_confirmed`, `accounts_user`.`is_lead`, `accounts_user`.`first_name`, `accounts_user`.`last_name`, `accounts_user`.`phone_no`, `accounts_user`.`address_1`, `accounts_user`.`address_2`, `accounts_user`.`city`, `accounts_user`.`state`, `accounts_user`.`zip`, `accounts_user`.`country`, `accounts_user`.`customer_perm`, `accounts_user`.`items_perm`, `accounts_user`.`item_kits_perm`, `accounts_user`.`suppliers_perm`, `accounts_user`.`reports_perm`, `accounts_user`.`receivings_perm`, `accounts_user`.`sales_perm`, `accounts_user`.`employees_perm`, `accounts_user`.`email`, `accounts_user`.`dept`, `accounts_user`.`gender` FROM `accounts_user` WHERE `accounts_user`.`username` = 'Ijerrycloudobnbnn' LIMIT 21; args=('Ijerrycloudobnbnn',); alias=default
+(0.003) SELECT `sales_sale`.`id`, `sales_sale`.`sales_id`, `sales_sale`.`customer_id`, `sales_sale`.`customer_name`, `sales_sale`.`customer_address`, `sales_sale`.`customer_email`, `sales_sale`.`register_mode`, `sales_sale`.`payment_type`, `sales_sale`.`items`, `sales_sale`.`paid_cash`, `sales_sale`.`discount`, `sales_sale`.`sub_total`, `sales_sale`.`sum_items`, `sales_sale`.`employee_id`, `sales_sale`.`employee_name`, `sales_sale`.`employee_dept`, `sales_sale`.`date`, `sales_sale`.`comments`, `sales_sale`.`company_address`, `sales_sale`.`company_phone1`, `sales_sale`.`company_phone2`, `sales_sale`.`company_email` FROM `sales_sale` WHERE `sales_sale`.`employee_id` IN (5) ORDER BY `sales_sale`.`date` DESC; args=(5,); alias=default
+(0.003) None; args=(5,); alias=default
+(0.003) None; args=(5,); alias=default
+(0.004) None; args=(5,); alias=default
+(0.005) None; args=(5,); alias=default
+(0.001) None; args=(5,); alias=default
+Internal Server Error: /authentication/users/delete_one_user/
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/MySQLdb/cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/MySQLdb/cursors.py", line 330, in _query
+    db.query(q)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/MySQLdb/connections.py", line 257, in query
+    _mysql.connection.query(self, query)
+MySQLdb.ProgrammingError: (1146, "Table 'jerrychinedu$default.notifications_notificationemails' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/jerrychinedu/samlex_test_backend/accounts/views.py", line 302, in post
+    user.delete()
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/models/base.py", line 1093, in delete
+    collector.collect([self], keep_parents=keep_parents)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/models/deletion.py", line 341, in collect
+    if sub_objs:
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/models/query.py", line 324, in __bool__
+    self._fetch_all()
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/models/query.py", line 1507, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/models/query.py", line 57, in __iter__
+    results = compiler.execute_sql(
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1361, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/MySQLdb/cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/MySQLdb/cursors.py", line 330, in _query
+    db.query(q)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/MySQLdb/connections.py", line 257, in query
+    _mysql.connection.query(self, query)
+django.db.utils.ProgrammingError: (1146, "Table 'jerrychinedu$default.notifications_notificationemails' doesn't exist")
+(0.008) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None; alias=default
+(0.007) SELECT `authtoken_token`.`key`, `authtoken_token`.`user_id`, `authtoken_token`.`created`, `accounts_user`.`id`, `accounts_user`.`password`, `accounts_user`.`last_login`, `accounts_user`.`is_superuser`, `accounts_user`.`is_staff`, `accounts_user`.`is_active`, `accounts_user`.`date_joined`, `accounts_user`.`username`, `accounts_user`.`uuid`, `accounts_user`.`email_confirmed`, `accounts_user`.`is_lead`, `accounts_user`.`first_name`, `accounts_user`.`last_name`, `accounts_user`.`phone_no`, `accounts_user`.`address_1`, `accounts_user`.`address_2`, `accounts_user`.`city`, `accounts_user`.`state`, `accounts_user`.`zip`, `accounts_user`.`country`, `accounts_user`.`customer_perm`, `accounts_user`.`items_perm`, `accounts_user`.`item_kits_perm`, `accounts_user`.`suppliers_perm`, `accounts_user`.`reports_perm`, `accounts_user`.`receivings_perm`, `accounts_user`.`sales_perm`, `accounts_user`.`employees_perm`, `accounts_user`.`email`, `accounts_user`.`dept`, `accounts_user`.`gender` FROM `authtoken_token` INNER JOIN `accounts_user` ON (`authtoken_token`.`user_id` = `accounts_user`.`id`) WHERE `authtoken_token`.`key` = '53133c0dde18ef1aa61429133f8834c88ba41ab6' LIMIT 21; args=('53133c0dde18ef1aa61429133f8834c88ba41ab6',); alias=default
+(0.059) SELECT COUNT(*) AS `__count` FROM `accounts_user`; args=(); alias=default
+(0.004) SELECT `accounts_user`.`id`, `accounts_user`.`password`, `accounts_user`.`last_login`, `accounts_user`.`is_superuser`, `accounts_user`.`is_staff`, `accounts_user`.`is_active`, `accounts_user`.`date_joined`, `accounts_user`.`username`, `accounts_user`.`uuid`, `accounts_user`.`email_confirmed`, `accounts_user`.`is_lead`, `accounts_user`.`first_name`, `accounts_user`.`last_name`, `accounts_user`.`phone_no`, `accounts_user`.`address_1`, `accounts_user`.`address_2`, `accounts_user`.`city`, `accounts_user`.`state`, `accounts_user`.`zip`, `accounts_user`.`country`, `accounts_user`.`customer_perm`, `accounts_user`.`items_perm`, `accounts_user`.`item_kits_perm`, `accounts_user`.`suppliers_perm`, `accounts_user`.`reports_perm`, `accounts_user`.`receivings_perm`, `accounts_user`.`sales_perm`, `accounts_user`.`employees_perm`, `accounts_user`.`email`, `accounts_user`.`dept`, `accounts_user`.`gender` FROM `accounts_user` ORDER BY `accounts_user`.`username` ASC LIMIT 5; args=(); alias=default
+(0.011) SELECT `auth_group`.`id`, `auth_group`.`name` FROM `auth_group` INNER JOIN `accounts_user_groups` ON (`auth_group`.`id` = `accounts_user_groups`.`group_id`) WHERE `accounts_user_groups`.`user_id` = 2; args=(2,); alias=default
+(0.004) SELECT `auth_permission`.`id`, `auth_permission`.`name`, `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `accounts_user_user_permissions` ON (`auth_permission`.`id` = `accounts_user_user_permissions`.`permission_id`) INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `accounts_user_user_permissions`.`user_id` = 2 ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(2,); alias=default
+(0.000) SELECT `auth_group`.`id`, `auth_group`.`name` FROM `auth_group` INNER JOIN `accounts_user_groups` ON (`auth_group`.`id` = `accounts_user_groups`.`group_id`) WHERE `accounts_user_groups`.`user_id` = 1; args=(1,); alias=default
+(0.003) SELECT `auth_permission`.`id`, `auth_permission`.`name`, `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `accounts_user_user_permissions` ON (`auth_permission`.`id` = `accounts_user_user_permissions`.`permission_id`) INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `accounts_user_user_permissions`.`user_id` = 1 ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(1,); alias=default
+(0.004) SELECT `auth_group`.`id`, `auth_group`.`name` FROM `auth_group` INNER JOIN `accounts_user_groups` ON (`auth_group`.`id` = `accounts_user_groups`.`group_id`) WHERE `accounts_user_groups`.`user_id` = 4; args=(4,); alias=default
+(0.002) SELECT `auth_permission`.`id`, `auth_permission`.`name`, `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `accounts_user_user_permissions` ON (`auth_permission`.`id` = `accounts_user_user_permissions`.`permission_id`) INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `accounts_user_user_permissions`.`user_id` = 4 ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(4,); alias=default
+(0.002) SELECT `auth_group`.`id`, `auth_group`.`name` FROM `auth_group` INNER JOIN `accounts_user_groups` ON (`auth_group`.`id` = `accounts_user_groups`.`group_id`) WHERE `accounts_user_groups`.`user_id` = 5; args=(5,); alias=default
+(0.002) SELECT `auth_permission`.`id`, `auth_permission`.`name`, `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `accounts_user_user_permissions` ON (`auth_permission`.`id` = `accounts_user_user_permissions`.`permission_id`) INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `accounts_user_user_permissions`.`user_id` = 5 ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(5,); alias=default
+(0.002) SELECT `auth_group`.`id`, `auth_group`.`name` FROM `auth_group` INNER JOIN `accounts_user_groups` ON (`auth_group`.`id` = `accounts_user_groups`.`group_id`) WHERE `accounts_user_groups`.`user_id` = 3; args=(3,); alias=default
+(0.007) SELECT `auth_permission`.`id`, `auth_permission`.`name`, `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `accounts_user_user_permissions` ON (`auth_permission`.`id` = `accounts_user_user_permissions`.`permission_id`) INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `accounts_user_user_permissions`.`user_id` = 3 ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(3,); alias=default
+(0.002) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None; alias=default
+(0.004) SELECT `authtoken_token`.`key`, `authtoken_token`.`user_id`, `authtoken_token`.`created`, `accounts_user`.`id`, `accounts_user`.`password`, `accounts_user`.`last_login`, `accounts_user`.`is_superuser`, `accounts_user`.`is_staff`, `accounts_user`.`is_active`, `accounts_user`.`date_joined`, `accounts_user`.`username`, `accounts_user`.`uuid`, `accounts_user`.`email_confirmed`, `accounts_user`.`is_lead`, `accounts_user`.`first_name`, `accounts_user`.`last_name`, `accounts_user`.`phone_no`, `accounts_user`.`address_1`, `accounts_user`.`address_2`, `accounts_user`.`city`, `accounts_user`.`state`, `accounts_user`.`zip`, `accounts_user`.`country`, `accounts_user`.`customer_perm`, `accounts_user`.`items_perm`, `accounts_user`.`item_kits_perm`, `accounts_user`.`suppliers_perm`, `accounts_user`.`reports_perm`, `accounts_user`.`receivings_perm`, `accounts_user`.`sales_perm`, `accounts_user`.`employees_perm`, `accounts_user`.`email`, `accounts_user`.`dept`, `accounts_user`.`gender` FROM `authtoken_token` INNER JOIN `accounts_user` ON (`authtoken_token`.`user_id` = `accounts_user`.`id`) WHERE `authtoken_token`.`key` = '53133c0dde18ef1aa61429133f8834c88ba41ab6' LIMIT 21; args=('53133c0dde18ef1aa61429133f8834c88ba41ab6',); alias=default
+(0.001) SELECT `accounts_user`.`id`, `accounts_user`.`password`, `accounts_user`.`last_login`, `accounts_user`.`is_superuser`, `accounts_user`.`is_staff`, `accounts_user`.`is_active`, `accounts_user`.`date_joined`, `accounts_user`.`username`, `accounts_user`.`uuid`, `accounts_user`.`email_confirmed`, `accounts_user`.`is_lead`, `accounts_user`.`first_name`, `accounts_user`.`last_name`, `accounts_user`.`phone_no`, `accounts_user`.`address_1`, `accounts_user`.`address_2`, `accounts_user`.`city`, `accounts_user`.`state`, `accounts_user`.`zip`, `accounts_user`.`country`, `accounts_user`.`customer_perm`, `accounts_user`.`items_perm`, `accounts_user`.`item_kits_perm`, `accounts_user`.`suppliers_perm`, `accounts_user`.`reports_perm`, `accounts_user`.`receivings_perm`, `accounts_user`.`sales_perm`, `accounts_user`.`employees_perm`, `accounts_user`.`email`, `accounts_user`.`dept`, `accounts_user`.`gender` FROM `accounts_user` WHERE `accounts_user`.`username` = 'Ijerrycloudobnbnn' LIMIT 21; args=('Ijerrycloudobnbnn',); alias=default
+(0.002) SELECT `sales_sale`.`id`, `sales_sale`.`sales_id`, `sales_sale`.`customer_id`, `sales_sale`.`customer_name`, `sales_sale`.`customer_address`, `sales_sale`.`customer_email`, `sales_sale`.`register_mode`, `sales_sale`.`payment_type`, `sales_sale`.`items`, `sales_sale`.`paid_cash`, `sales_sale`.`discount`, `sales_sale`.`sub_total`, `sales_sale`.`sum_items`, `sales_sale`.`employee_id`, `sales_sale`.`employee_name`, `sales_sale`.`employee_dept`, `sales_sale`.`date`, `sales_sale`.`comments`, `sales_sale`.`company_address`, `sales_sale`.`company_phone1`, `sales_sale`.`company_phone2`, `sales_sale`.`company_email` FROM `sales_sale` WHERE `sales_sale`.`employee_id` IN (5) ORDER BY `sales_sale`.`date` DESC; args=(5,); alias=default
+(0.002) None; args=(5,); alias=default
+(0.001) None; args=(5,); alias=default
+(0.002) None; args=(5,); alias=default
+(0.003) None; args=(5,); alias=default
+(0.006) None; args=(5,); alias=default
+Internal Server Error: /authentication/users/delete_one_user/
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/MySQLdb/cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/MySQLdb/cursors.py", line 330, in _query
+    db.query(q)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/MySQLdb/connections.py", line 257, in query
+    _mysql.connection.query(self, query)
+MySQLdb.ProgrammingError: (1146, "Table 'jerrychinedu$default.notifications_notificationemails' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/views/generic/base.py", line 84, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/jerrychinedu/samlex_test_backend/accounts/views.py", line 302, in post
+    user.delete()
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/models/base.py", line 1093, in delete
+    collector.collect([self], keep_parents=keep_parents)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/models/deletion.py", line 341, in collect
+    if sub_objs:
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/models/query.py", line 324, in __bool__
+    self._fetch_all()
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/models/query.py", line 1507, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/models/query.py", line 57, in __iter__
+    results = compiler.execute_sql(
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1361, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/MySQLdb/cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/MySQLdb/cursors.py", line 330, in _query
+    db.query(q)
+  File "/home/jerrychinedu/.virtualenvs/samlex-virtualenv/lib/python3.10/site-packages/MySQLdb/connections.py", line 257, in query
+    _mysql.connection.query(self, query)
+django.db.utils.ProgrammingError: (1146, "Table 'jerrychinedu$default.notifications_notificationemails' doesn't exist")
+(0.005) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None; alias=default
+(0.010) SELECT `authtoken_token`.`key`, `authtoken_token`.`user_id`, `authtoken_token`.`created`, `accounts_user`.`id`, `accounts_user`.`password`, `accounts_user`.`last_login`, `accounts_user`.`is_superuser`, `accounts_user`.`is_staff`, `accounts_user`.`is_active`, `accounts_user`.`date_joined`, `accounts_user`.`username`, `accounts_user`.`uuid`, `accounts_user`.`email_confirmed`, `accounts_user`.`is_lead`, `accounts_user`.`first_name`, `accounts_user`.`last_name`, `accounts_user`.`phone_no`, `accounts_user`.`address_1`, `accounts_user`.`address_2`, `accounts_user`.`city`, `accounts_user`.`state`, `accounts_user`.`zip`, `accounts_user`.`country`, `accounts_user`.`customer_perm`, `accounts_user`.`items_perm`, `accounts_user`.`item_kits_perm`, `accounts_user`.`suppliers_perm`, `accounts_user`.`reports_perm`, `accounts_user`.`receivings_perm`, `accounts_user`.`sales_perm`, `accounts_user`.`employees_perm`, `accounts_user`.`email`, `accounts_user`.`dept`, `accounts_user`.`gender` FROM `authtoken_token` INNER JOIN `accounts_user` ON (`authtoken_token`.`user_id` = `accounts_user`.`id`) WHERE `authtoken_token`.`key` = '53133c0dde18ef1aa61429133f8834c88ba41ab6' LIMIT 21; args=('53133c0dde18ef1aa61429133f8834c88ba41ab6',); alias=default
+(0.058) SELECT COUNT(*) AS `__count` FROM `accounts_user`; args=(); alias=default
+(0.003) SELECT `accounts_user`.`id`, `accounts_user`.`password`, `accounts_user`.`last_login`, `accounts_user`.`is_superuser`, `accounts_user`.`is_staff`, `accounts_user`.`is_active`, `accounts_user`.`date_joined`, `accounts_user`.`username`, `accounts_user`.`uuid`, `accounts_user`.`email_confirmed`, `accounts_user`.`is_lead`, `accounts_user`.`first_name`, `accounts_user`.`last_name`, `accounts_user`.`phone_no`, `accounts_user`.`address_1`, `accounts_user`.`address_2`, `accounts_user`.`city`, `accounts_user`.`state`, `accounts_user`.`zip`, `accounts_user`.`country`, `accounts_user`.`customer_perm`, `accounts_user`.`items_perm`, `accounts_user`.`item_kits_perm`, `accounts_user`.`suppliers_perm`, `accounts_user`.`reports_perm`, `accounts_user`.`receivings_perm`, `accounts_user`.`sales_perm`, `accounts_user`.`employees_perm`, `accounts_user`.`email`, `accounts_user`.`dept`, `accounts_user`.`gender` FROM `accounts_user` ORDER BY `accounts_user`.`username` ASC LIMIT 5; args=(); alias=default
+(0.003) SELECT `auth_group`.`id`, `auth_group`.`name` FROM `auth_group` INNER JOIN `accounts_user_groups` ON (`auth_group`.`id` = `accounts_user_groups`.`group_id`) WHERE `accounts_user_groups`.`user_id` = 2; args=(2,); alias=default
+(0.001) SELECT `auth_permission`.`id`, `auth_permission`.`name`, `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `accounts_user_user_permissions` ON (`auth_permission`.`id` = `accounts_user_user_permissions`.`permission_id`) INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `accounts_user_user_permissions`.`user_id` = 2 ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(2,); alias=default
+(0.004) SELECT `auth_group`.`id`, `auth_group`.`name` FROM `auth_group` INNER JOIN `accounts_user_groups` ON (`auth_group`.`id` = `accounts_user_groups`.`group_id`) WHERE `accounts_user_groups`.`user_id` = 1; args=(1,); alias=default
+(0.001) SELECT `auth_permission`.`id`, `auth_permission`.`name`, `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `accounts_user_user_permissions` ON (`auth_permission`.`id` = `accounts_user_user_permissions`.`permission_id`) INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `accounts_user_user_permissions`.`user_id` = 1 ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(1,); alias=default
+(0.001) SELECT `auth_group`.`id`, `auth_group`.`name` FROM `auth_group` INNER JOIN `accounts_user_groups` ON (`auth_group`.`id` = `accounts_user_groups`.`group_id`) WHERE `accounts_user_groups`.`user_id` = 4; args=(4,); alias=default
+(0.004) SELECT `auth_permission`.`id`, `auth_permission`.`name`, `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `accounts_user_user_permissions` ON (`auth_permission`.`id` = `accounts_user_user_permissions`.`permission_id`) INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `accounts_user_user_permissions`.`user_id` = 4 ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(4,); alias=default
+(0.003) SELECT `auth_group`.`id`, `auth_group`.`name` FROM `auth_group` INNER JOIN `accounts_user_groups` ON (`auth_group`.`id` = `accounts_user_groups`.`group_id`) WHERE `accounts_user_groups`.`user_id` = 5; args=(5,); alias=default
+(0.001) SELECT `auth_permission`.`id`, `auth_permission`.`name`, `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `accounts_user_user_permissions` ON (`auth_permission`.`id` = `accounts_user_user_permissions`.`permission_id`) INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `accounts_user_user_permissions`.`user_id` = 5 ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(5,); alias=default
+(0.003) SELECT `auth_group`.`id`, `auth_group`.`name` FROM `auth_group` INNER JOIN `accounts_user_groups` ON (`auth_group`.`id` = `accounts_user_groups`.`group_id`) WHERE `accounts_user_groups`.`user_id` = 3; args=(3,); alias=default
+(0.001) SELECT `auth_permission`.`id`, `auth_permission`.`name`, `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `accounts_user_user_permissions` ON (`auth_permission`.`id` = `accounts_user_user_permissions`.`permission_id`) INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `accounts_user_user_permissions`.`user_id` = 3 ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(3,); alias=default
