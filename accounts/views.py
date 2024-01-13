@@ -293,12 +293,14 @@ class DeleteOneUserView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated, EmployeesAccessPermission]
     
     def post(self, request, *args, **kwargs):
-        
+        print(11111111111111111111111)
         
         user = get_object_or_404(User, username=request.data.get("username"))
+        print(22222222222222222222)
         user_id = user.id
+        print(33333333333333333333333)
         user.delete()
-        
+        print(4444444444444444444444444)
         return response.Response({'detail': 'success', 'id': user_id}, status=status.HTTP_200_OK)
 
     
