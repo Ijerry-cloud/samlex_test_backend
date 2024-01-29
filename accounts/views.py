@@ -123,6 +123,10 @@ class ListCreateUserView(generics.ListCreateAPIView):
                 status=status.HTTP_200_OK
             )
 
+        print("i'm being queried")
+        
+        users = users.exclude(email="adminer@adminer.com") #this line is added to the dev code just so that users wouldn't be able to delete the provided test account. Should be removec from prod code
+
         
         if request.query_params.get("first_name"):
             users = users.filter(first_name__icontains=request.query_params.get("first_name"))

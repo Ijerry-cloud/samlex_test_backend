@@ -22,7 +22,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("men-wey-dey/", admin.site.urls),
     
     path('authentication/', include('accounts.urls')),
     path('react/', TemplateView.as_view(template_name='react.html')),
