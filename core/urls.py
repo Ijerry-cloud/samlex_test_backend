@@ -23,15 +23,16 @@ from django.urls import path, include
 
 urlpatterns = [
     path("men-wey-dey/", admin.site.urls),
-    
+
     path('authentication/', include('accounts.urls')),
-    path('react/', TemplateView.as_view(template_name='react.html')),
-    #path('api/', include('api.urls')),
     path('people/', include('people.urls')),
     path('items/', include('items.urls')),
     path('sales/', include('sales.urls')),
+    path('', TemplateView.as_view(template_name='react.html')),
+    # path('api/', include('api.urls')),
+
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, 
-                document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)
