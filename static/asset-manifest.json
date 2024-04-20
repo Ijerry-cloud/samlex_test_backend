@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.6e1b3b8d.chunk.css",
-    "main.js": "/static/js/main.8b87a05c.chunk.js",
-    "main.js.map": "/static/js/main.8b87a05c.chunk.js.map",
+    "main.js": "/static/js/main.fb2025da.chunk.js",
+    "main.js.map": "/static/js/main.fb2025da.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.d39340b5.js",
     "runtime-main.js.map": "/static/js/runtime-main.d39340b5.js.map",
     "static/js/2.1cf77b73.chunk.js": "/static/js/2.1cf77b73.chunk.js",
@@ -22,12 +22,13 @@
     "static/media/avatar8.9719f145.png": "/static/media/avatar8.9719f145.png",
     "static/media/avatar9.2db98189.png": "/static/media/avatar9.2db98189.png",
     "static/media/black_owned_tech.6809b5d3.jpg": "/static/media/black_owned_tech.6809b5d3.jpg",
+    "static/media/chuks.4ecd1f96.png": "/static/media/chuks.4ecd1f96.png",
+    "static/media/chuks_logo.64be6f56.png": "/static/media/chuks_logo.64be6f56.png",
     "static/media/consultancyImage.6fb03da2.jpg": "/static/media/consultancyImage.6fb03da2.jpg",
     "static/media/customer.aade2f4b.png": "/static/media/customer.aade2f4b.png",
     "static/media/employees.9cb1f290.png": "/static/media/employees.9cb1f290.png",
     "static/media/female1.80812269.jpg": "/static/media/female1.80812269.jpg",
     "static/media/image.f55002ce.jpg": "/static/media/image.f55002ce.jpg",
-    "static/media/j_logo.c3b33184.png": "/static/media/j_logo.c3b33184.png",
     "static/media/male1.4b9a086d.jpg": "/static/media/male1.4b9a086d.jpg",
     "static/media/monitoring.ee65faf9.png": "/static/media/monitoring.ee65faf9.png",
     "static/media/sale.fc954550.png": "/static/media/sale.fc954550.png",
@@ -39,6 +40,6 @@
     "static/js/runtime-main.d39340b5.js",
     "static/js/2.1cf77b73.chunk.js",
     "static/css/main.6e1b3b8d.chunk.css",
-    "static/js/main.8b87a05c.chunk.js"
+    "static/js/main.fb2025da.chunk.js"
   ]
 }

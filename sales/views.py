@@ -20,7 +20,7 @@ from django.db import transaction
 import csv
 from django.http import HttpResponse
 
-COMPANY_NAME = "j.cloud.dev"
+COMPANY_NAME = "chuksdigitals"
 
 User = get_user_model()
 
